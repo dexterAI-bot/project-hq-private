@@ -4,8 +4,18 @@ import useSWR from 'swr';
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
-  if (!res.ok) throw new Error('failed');
-  return res.json();
+  const text = await res.text();
+  let json: any = null;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    // not JSON
+  }
+  if (!res.ok) {
+    const msg = json?.error ? `${json.error} (${res.status})` : `HTTP ${res.status}`;
+    throw new Error(msg);
+  }
+  return json ?? {};
 };
 
 export default function DashboardPage() {
@@ -16,10 +26,18 @@ export default function DashboardPage() {
   }
   if (error) {
     return (
-      <div className="min-h-screen p-8">
-        <div className="rounded-xl border bg-white p-4">
-          <div className="font-bold">Failed to load</div>
-          <div className="text-sm text-zinc-600">Try refreshing. If you see 401, you need to login.</div>
+      <div className="min-h-screen p-8 bg-zinc-50">
+        <div className="mx-auto max-w-xl rounded-2xl border bg-white p-5 shadow-sm">
+          <div className="font-extrabold text-zinc-900">Failed to load</div>
+          <div className="mt-1 text-sm text-zinc-700">
+            {String((error as any)?.message || '')}
+          </div>
+          <div className="mt-2 text-xs text-zinc-600">
+            If you see <span className="font-semibold">unauthorized (401)</span>, you need to login.
+          </div>
+          <a className="mt-4 inline-block text-sm underline" href="/login">
+            Go to login
+          </a>
         </div>
       </div>
     );

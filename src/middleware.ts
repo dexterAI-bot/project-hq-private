@@ -28,7 +28,8 @@ export async function middleware(request: NextRequest) {
   }
 
   const { pathname } = request.nextUrl;
-  const isProtected = pathname.startsWith('/app') || pathname.startsWith('/api');
+  const isApi = pathname.startsWith('/api');
+  const isProtected = pathname.startsWith('/app') || isApi;
   const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/auth/callback');
 
   if (isProtected && !isAuthRoute) {
@@ -37,6 +38,11 @@ export async function middleware(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (!user) {
+      // For API routes, return 401 JSON instead of redirecting to /login
+      if (isApi) {
+        return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+      }
+
       const url = request.nextUrl.clone();
       url.pathname = '/login';
       url.searchParams.set('next', pathname);

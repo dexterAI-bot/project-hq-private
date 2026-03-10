@@ -94,7 +94,7 @@ export function LoginForm() {
             <div>
               <label className="text-xs font-semibold text-zinc-600">Email</label>
               <input
-                className={`mt-1 w-full rounded-2xl border p-3 outline-none focus:ring-2 focus:ring-sky-300 ${
+                className={`mt-1 w-full rounded-2xl border p-3 outline-none focus:ring-2 focus:ring-sky-300 text-zinc-900 placeholder:text-zinc-400 ${
                   !isAllowed && email ? 'border-rose-300 bg-rose-50' : ''
                 }`}
                 placeholder="you@email.com"

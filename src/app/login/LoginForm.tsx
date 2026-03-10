@@ -15,7 +15,7 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
 
-  const allowedEmail = (process.env.NEXT_PUBLIC_PROJECT_HQ_ADMIN_EMAIL || '').toLowerCase();
+  const allowedEmail = (process.env.NEXT_PUBLIC_PROJECT_HQ_ADMIN_EMAIL || '').trim().toLowerCase();
   const emailLower = email.trim().toLowerCase();
   const isAllowed = !allowedEmail || emailLower === allowedEmail;
 

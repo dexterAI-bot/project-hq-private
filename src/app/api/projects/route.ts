@@ -11,6 +11,11 @@ export async function GET() {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
+  const adminEmail = (process.env.PROJECT_HQ_ADMIN_EMAIL || '').toLowerCase();
+  if (adminEmail && (user.email || '').toLowerCase() !== adminEmail) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+  }
+
   // For now, proxy the public GitHub Pages JSON.
   // Next iteration: store projects in Supabase and fetch directly.
   const url = 'https://raw.githubusercontent.com/dexterAI-bot/project-dashboard/main/projects.json';

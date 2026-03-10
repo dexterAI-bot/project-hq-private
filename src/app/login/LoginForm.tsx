@@ -62,7 +62,11 @@ export function LoginForm() {
               <h1 className="text-2xl font-extrabold tracking-tight text-zinc-900">Project HQ</h1>
               <p className="mt-1 text-sm text-zinc-700">Private dashboard</p>
             </div>
-            <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-sky-400 shadow" />
+            <img
+              src="/icon-project-hq.png"
+              alt="Project HQ"
+              className="h-12 w-12 rounded-2xl shadow"
+            />
           </div>
 
           <div className="mt-5 rounded-2xl bg-zinc-50 p-1 flex gap-1">

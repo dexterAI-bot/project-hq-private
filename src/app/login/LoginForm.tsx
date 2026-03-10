@@ -56,11 +56,11 @@ export function LoginForm() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-indigo-50 p-6 flex items-center justify-center">
       <div className="w-full max-w-md">
-        <div className="rounded-3xl border bg-white/80 backdrop-blur p-6 shadow-[0_20px_60px_rgba(2,6,23,0.12)]">
+        <div className="rounded-3xl border bg-white p-6 shadow-[0_20px_60px_rgba(2,6,23,0.12)]">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-extrabold tracking-tight">Project HQ</h1>
-              <p className="mt-1 text-sm text-zinc-600">Private dashboard</p>
+              <h1 className="text-2xl font-extrabold tracking-tight text-zinc-900">Project HQ</h1>
+              <p className="mt-1 text-sm text-zinc-700">Private dashboard</p>
             </div>
             <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-sky-400 shadow" />
           </div>
@@ -70,7 +70,7 @@ export function LoginForm() {
               type="button"
               onClick={() => setMode('magic')}
               className={`flex-1 rounded-2xl px-3 py-2 text-sm font-bold ${
-                mode === 'magic' ? 'bg-white shadow border' : 'text-zinc-600'
+                mode === 'magic' ? 'bg-white shadow border text-zinc-900' : 'text-zinc-700'
               }`}
             >
               Magic link
@@ -79,7 +79,7 @@ export function LoginForm() {
               type="button"
               onClick={() => setMode('signin')}
               className={`flex-1 rounded-2xl px-3 py-2 text-sm font-bold ${
-                mode === 'signin' ? 'bg-white shadow border' : 'text-zinc-600'
+                mode === 'signin' ? 'bg-white shadow border text-zinc-900' : 'text-zinc-700'
               }`}
             >
               Password
@@ -116,7 +116,7 @@ export function LoginForm() {
                 />
               </div>
             ) : (
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-zinc-600">
                 We’ll email you a one-time login link. No password needed.
               </p>
             )}
@@ -133,14 +133,14 @@ export function LoginForm() {
             ) : null}
 
             {allowedEmail ? (
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-zinc-700">
                 Allowed email: <span className="font-semibold">{allowedEmail}</span>
               </p>
             ) : null}
           </form>
         </div>
 
-        <p className="mt-4 text-center text-xs text-zinc-500">
+        <p className="mt-4 text-center text-xs text-zinc-700">
           Tip: bookmark <span className="font-semibold">/app</span> — it will prompt login when needed.
         </p>
       </div>
